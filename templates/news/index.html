@@ -1,0 +1,302 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Bosh sahiva {% endblock title %}
+{% block content %}
+        <!-- Top News Start-->
+        <div class="top-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 tn-left">
+                        <div class="tn-img">
+                            <img src="{% static 'images/top-news-1.jpg' %}" />
+                            <div class="tn-content">
+                                <div class="tn-content-inner">
+                                    <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                    <a class="tn-title" href="">Lorem ipsum dolor sit amet adipiscing elit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 tn-right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="{% static 'images/top-news-2.jpg' %}" />
+                                    <div class="tn-content">
+                                        <div class="tn-content-inner">
+                                            <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            <a class="tn-title" href="">Integer faucibus pharetra odio</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="{% static 'images/top-news-3.jpg' %}" />
+                                    <div class="tn-content">
+                                        <div class="tn-content-inner">
+                                            <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            <a class="tn-title" href="">Nulla vitae pharetra ligula</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="{% static 'images/top-news-4.jpg' %}" />
+                                    <div class="tn-content">
+                                        <div class="tn-content-inner">
+                                            <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            <a class="tn-title" href="">Ut ac euismod tellus a blandit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="tn-img">
+                                    <img src="{% static 'images/top-news-5.jpg' %}" />
+                                    <div class="tn-content">
+                                        <div class="tn-content-inner">
+                                            <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            <a class="tn-title" href="">Cras ac egestas sem nec euismod</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top News End-->
+
+
+        <!-- Category News Start-->
+        <div class="cat-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Sports</h2>
+                        <div class="row cn-slider">
+
+                            {% for sport in sport_data %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{ sport.image.url }}" />
+                                    <div class="cn-content">
+                                        <div class="cn-content-inner">
+                                            <a class="cn-date" href=""><i class="far fa-clock"></i>{{sport.pubhlished_time}}</a>
+                                            <a class="cn-title" href="{{ sport.get_absolute_url }}">{{sport.title | truncatewords:5}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2><i class="fas fa-align-justify"></i>Technology</h2>
+                        <div class="row cn-slider">
+
+
+
+{% for tech in tech_data %}
+                            <div class="col-md-6">
+                                <div class="cn-img">
+                                    <img src="{{ tech.image.url }}" />
+                                    <div class="cn-content">
+                                        <div class="cn-content-inner">
+                                            <a class="cn-date" href=""><i class="far fa-clock"></i>{{ tech.published_time }}</a>
+                                            <a class="cn-title" href="{{ tech.get_absolute_url }}">{{ tech.title | truncatewords:5}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+
+
+
+        <!-- Main News Start-->
+        <div class="main-news">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2><i class="fas fa-align-justify"></i>Latest News</h2>
+                                <div class="row">
+
+                                      {% for news in news_list %}
+                                    {% if forloop.first %}
+                                    <div class="col-lg-6">
+                                        <div class="mn-img">
+                                            <img src="{{ news.image.url }}" />
+                                        </div>
+                                        <div class="mn-content">
+                                           <a class="mn-title" href="{{ news.get_absolute_url }}">{{news.title}}</a>
+                                            <a class="mn-date" href=""><i class="far fa-clock"></i>{{news.published_time}}</a>
+
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra inceptos...
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                      {% endfor %}
+
+                                    <div class="col-lg-6">
+
+                                   {% for news in news_list %}
+                                        {% if forloop.counter > 1 %}
+                                        <div class="mn-list">
+                                            <div class="mn-img">
+                                                <img src="{{ news.image.url }}" />
+                                            </div>
+                                            <div class="mn-content">
+                                                <a class="mn-title" href="{{ news.get_absolute_url }}">{{news.title}}</a>
+                                                <a class="mn-date" href=""><i class="far fa-clock"></i>{{news.published_time}}</a>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                     {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h2><i class="fas fa-align-justify"></i>Popular News</h2>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mn-img">
+                                            <img src="{% static 'images/popular-news.jpg' %}" />
+                                        </div>
+                                        <div class="mn-content">
+                                            <a class="mn-title" href="">Phasellus gravida metus vitae laoreet aliquam</a>
+                                            <a class="mn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra inceptos...
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mn-list">
+                                            <div class="mn-img">
+                                                <img src="{% static 'images/popular-news.jpg' %}" />
+                                            </div>
+                                            <div class="mn-content">
+                                                <a class="mn-title" href="">Nullam risus ante sempe</a>
+                                                <a class="mn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            </div>
+                                        </div>
+                                        <div class="mn-list">
+                                            <div class="mn-img">
+                                                <img src="{% static 'images/popular-news.jpg' %}" />
+                                            </div>
+                                            <div class="mn-content">
+                                                <a class="mn-title" href="">Pellentesque ultrices quam id ipsum tempor</a>
+                                                <a class="mn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            </div>
+                                        </div>
+                                        <div class="mn-list">
+                                            <div class="mn-img">
+                                                <img src="{% static 'images/popular-news.jpg' %}" />
+                                            </div>
+                                            <div class="mn-content">
+                                                <a class="mn-title" href="">Nam ex magna, commodo sed turpis rutrum</a>
+                                                <a class="mn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            </div>
+                                        </div>
+                                        <div class="mn-list">
+                                            <div class="mn-img">
+                                                <img src="{% static 'images/popular-news.jpg' %}" />
+                                            </div>
+                                            <div class="mn-content">
+                                                <a class="mn-title" href="">Aliquam condimentum metus</a>
+                                                <a class="mn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            </div>
+                                        </div>
+                                        <div class="mn-list">
+                                            <div class="mn-img">
+                                                <img src="{% static 'images/popular-news.jpg' %}" />
+                                            </div>
+                                            <div class="mn-content">
+                                                <a class="mn-title" href="">Ut ornare rutrum ligula erat volutpat</a>
+                                                <a class="mn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="sidebar">
+                            <div class="sidebar-widget">
+                                <h2><i class="fas fa-align-justify"></i>Category</h2>
+                                <div class="category">
+                                    <ul class="fa-ul">
+                                        {% for category in categories_data %}
+                                       <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a href="">{{category.name}}</a></li>
+                                  {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-widget">
+                                <h2><i class="fas fa-align-justify"></i>Tags</h2>
+                                <div class="tags">
+                                     {% for category in categories_data %}
+                                   <a href="">{{category.name}}</a>
+
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+
+                            <div class="sidebar-widget">
+                                <h2><i class="fas fa-align-justify"></i>Ads 1 column</h2>
+                                <div class="image">
+                                    <a href=""><img src="{% static 'images/adds-1.jpg' %}" alt="Image"></a>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-widget">
+                                <h2><i class="fas fa-align-justify"></i>Ads 2 column</h2>
+                                <div class="image">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <a href=""><img src="{% static 'images/adds-2.jpg' %}" alt="Image"></a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <a href=""><img src="{% static 'images/adds-2.jpg' %}" alt="Image"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main News End-->
+
+
+
+
+
+        <!-- Back to Top -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+{% endblock content %}

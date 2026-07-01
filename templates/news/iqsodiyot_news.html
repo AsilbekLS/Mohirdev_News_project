@@ -1,0 +1,20 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Jahon yangiliklari {% endblock title %}
+{% block content %}
+
+{% for iqsodiyot in iqsodiyot_list %}
+
+<div>
+    
+    <a href="{{iqsodiyot.get_absolute_url}}">
+
+          <h1>{{iqsodiyot.title}}</h1>
+    </a>
+
+</div>
+
+{% endfor %}
+
+{% endblock content %}
