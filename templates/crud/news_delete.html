@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Jahon yangiliklari {% endblock title %}
+{% block content %}
+
+<form method="post">{% csrf_token %}
+
+<h3>{{news.title}}</h3>
+
+    <button type="submit">Delete</button>
+</form>
+
+{% endblock content %}

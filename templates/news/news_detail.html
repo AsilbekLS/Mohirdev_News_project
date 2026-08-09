@@ -6,4 +6,8 @@
 <h1>{{news.title}}</h1>
 <h1>{{news.body}}</h1>
 
+<a href="{% url 'news_update' news.slug %}">Update</a>
+<a href="{% url 'news_delete' news.slug %}">Delete</a>
+
+
 {% endblock content %}

@@ -1,0 +1,14 @@
+/*
+Source - https://stackoverflow.com/a/65406021
+Posted by Ahmed Ali
+Retrieved 2026-07-04, License - CC BY-SA 4.0
+*/
+
+video {
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

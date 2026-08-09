@@ -4,7 +4,8 @@ from symtable import Class
 from django.db.models import Model
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from news_app.models import News, Category
 from .forms import ContactForm
 
@@ -74,3 +75,19 @@ class IqsodiyotPageView(ListView):
     def get_queryset(self):
         news = self.model.objects.all().filter(category__name = 'Iqsodiyot')
         return news
+
+class NewsUpdateView(UpdateView):
+    model = News
+    template_name = 'crud/news_update.html'
+    fields = ['title','body','image','category','status']
+
+class NewsDeleteView(DeleteView):
+    model = News
+    template_name = 'crud/news_delete.html'
+    success_url = reverse_lazy('home_page_view')
+
+class NewsCreateNews(CreateView):
+    model = News
+    template_name = 'crud/news_create.html'
+   
+    fields = ['title','slug','body','image','category','status']

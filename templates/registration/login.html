@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block title %} Login sahifasi {% endblock title %}
+
+{% block content %}
+
+<h2>Web-saytga kirish - login</h2>
+
+<p>Iltimos formani toldiring</p>
+
+<form method="post">{% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Login</button>
+
+</form>
+
+<form action="{% url 'logout_page_view' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% endblock content %}

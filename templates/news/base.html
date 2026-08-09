@@ -93,6 +93,12 @@
                             <a href="{% url 'contact_page_view' %}" class="nav-item nav-link">Contact Us</a>
 <p  style="color: #f8f9fa; margin: 10px">{% now 'jS F Y H:i' %}</p>
 
+                            {% if request.user.is_authenticated %}
+                            <p><a href="{% url 'user_profile' %}">My profile</a></p>
+                            {% else %}
+                                <p><a href="{% url 'login_page_view' %}">Login</a></p>
+                            {% endif %}
+
                         </div>
                     </div>
                 </nav>
