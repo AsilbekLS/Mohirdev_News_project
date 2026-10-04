@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -89,9 +90,17 @@
                                     <a href="#" class="dropdown-item">Sub Item 2</a>
                                 </div>
                             </div>
+
                             <a href="#" class="nav-item nav-link">Single Page</a>
                             <a href="{% url 'contact_page_view' %}" class="nav-item nav-link">Contact Us</a>
-<p  style="color: #f8f9fa; margin: 10px">{% now 'jS F Y H:i' %}</p>
+                            <div>
+
+
+                            <form method="get" action="{% url 'search_results' %}">
+                            <input type="search" name="q" class="control-input">
+                            </form>
+                                       </div>
+                            <p  style="color: #f8f9fa; margin: 10px">{% now 'jS F Y H:i' %}</p>
 
                             {% if request.user.is_authenticated %}
                             <p><a href="{% url 'user_profile' %}">My profile</a></p>

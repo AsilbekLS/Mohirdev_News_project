@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from news_app.models import News, Category, Contacts
+from news_app.models import News, Category, Contacts, Comment
 
 
 # Register your media here.
@@ -19,3 +19,17 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id','name']
 
 admin.site.register(Contacts)
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['user','body','created_time','active']
+    list_filter = ['active','created_time']
+    search_fields = ['user','body']
+    actions = ['disable_comment','activate_comment']
+
+    def disable_comment(self,request,queryset):
+        queryset.update(active=False)
+
+    def activate_comment(self,request,queryset):
+        queryset.update(active=True)
+
+admin.site.register(Comment,CommentAdmin)

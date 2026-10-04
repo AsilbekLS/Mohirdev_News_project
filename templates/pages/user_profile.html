@@ -9,9 +9,12 @@
     {% csrf_token %}
     <button type="submit">Logout</button>
 </form>
-   <h2>Siz haqingizdagi ma'lumotlar</h2>
-    <img src="{{ profile.photo.url }}" width="30%">
 
+<button><a href="{% url 'user_profile_edit' %}">profile_edit</a></button>
+   <h2>Siz haqingizdagi ma'lumotlar</h2>
+{% if profile.photo in profile %}
+   <img src="{{ profile.photo.url }}" width="30%">
+{% endif %}
     <label>Username:</label> <input value="{{ user.username }}" readonly placeholder="kiritilmagan"><br>
     <label>Emailingiz:</label> <input value="{{ user.email }}" readonly placeholder="kiritilmagan"><br>
     <label>Ismingiz:</label> <input value="{{ user.first_name }}" readonly placeholder="kiritilmagan"><br>

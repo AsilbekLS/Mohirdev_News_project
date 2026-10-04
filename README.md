@@ -1,1 +1,1 @@
-# Mohirdev_News_project
+# Asilbek's_News_project

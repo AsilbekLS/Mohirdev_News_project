@@ -1,5 +1,7 @@
 from datetime import timezone, datetime
 from symtable import Class
+
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.db import models
 
@@ -45,3 +47,15 @@ class Contacts(models.Model):
     def __str__(self):
         return self.email   
 
+class Comment(models.Model):
+    news = models.ForeignKey(News, on_delete=models.CASCADE, related_name='comment')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment')
+    body = models.TextField()
+    created_time = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    class Meta():
+        ordering = ['created_time']
+
+    def __str__(self):
+        return f'comment: {self.body} created by {self.user}'

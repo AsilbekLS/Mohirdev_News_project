@@ -14,7 +14,7 @@ from pathlib import Path
 
 from django.conf.global_settings import MEDIA_URL, STATICFILES_DIRS, STATIC_ROOT, STATICFILES_FINDERS, \
     LOGIN_REDIRECT_URL, EMAIL_BACKEND
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,12 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0&#!2)=h%o@j%1i*dm@n9rg=aiuar!u#u@e#_8#!6mi=4@o4ap'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver']
 
 
 # Application definition
@@ -41,11 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news_app',
-    'accounts'
+    'accounts',
+    'hitcount',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -119,17 +123,24 @@ USE_TZ = True
 
 # Static files (CSS, js, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
+STATIC_URL = '/static/'
+STATIC_ROOT = '/home/djangomo/django-mohirdev-demo.uz/django/staticfiles'
+STATICFILES_DIRS = ('/home/djangomo/django-mohirdev-demo.uz/django/static', )
+#local
+# STATIC_ROOT = BASE_DIR / 'staticfiles'  # debug = False
+# STATICFILES_DIRS = [BASE_DIR / 'static'] #debug = True
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-
 ]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media/'
+
+MEIDA_URL = 'media/'
+MEDIA_ROOT = '/home/djangomo/django-mohirdev-demo.uz/django/media'
 LOGIN_REDIRECT_URL = 'home_page_view'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+LOGIN_URL = 'login_page_view'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

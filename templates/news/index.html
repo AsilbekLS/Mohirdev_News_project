@@ -1,5 +1,6 @@
 {% extends 'news/base.html' %}
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} Bosh sahifa {% endblock title %}
 {% block content %}
@@ -87,6 +88,8 @@
                                     <div class="cn-content">
                                         <div class="cn-content-inner">
                                             <a class="cn-date" href=""><i class="far fa-clock"></i>{{sport.published_time}}</a>
+                                             <i class="fa-utility-duo fa-semibold fa-eye" aria-hidden="true"></i><span class="font-weight-bold mb-3" style="line-height:1.2; color:#111;">Korilganlar soni: {% get_hit_count for sport  %}</span>
+
                                             <a class="cn-title" href="{{ sport.get_absolute_url }}">{{sport.title | truncatewords:5}}</a>
                                         </div>
                                     </div>
@@ -110,6 +113,8 @@
                                     <div class="cn-content">
                                         <div class="cn-content-inner">
                                             <a class="cn-date" href=""><i class="far fa-clock"></i>{{ tech.published_time }}</a>
+                                          <i class="fa-utility-duo fa-semibold fa-eye" aria-hidden="true"></i><span class="font-weight-bold mb-3" style="line-height:1.2; color:#111;">Korilganlar soni: {% get_hit_count for tech  %}</span>
+
                                             <a class="cn-title" href="{{ tech.get_absolute_url }}">{{ tech.title | truncatewords:5}}</a>
                                         </div>
                                     </div>
